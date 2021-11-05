@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotización Express</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+        }
+        .qs__hdr__busDta{
+            width: 100%;
+            height: 15rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .qs{
+            width: 8.5in;
+            height: 11in;
+            box-shadow: 0rem 0.5rem 0.5rem gray;
+        }
+        .qs__body h2{
+            margin-bottom: 2rem;
+        }
+        .qs__body > h2{
+            text-indent: 2rem;
+            font-size: 4rem;
+        }
+        .qs__hdr__usrDta{
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr .4fr;
+            padding: 0 5rem;
+        }
+        .qs__hdr__usrDta div{
+            display: flex;
+            justify-content: space-between;
+            margin: 0.4rem;
+            font-size: 1.9rem;
+        }
+        .qs__hdr__usrDta div p{
+            flex-basis: 70%;
+        }
+        .qs__body__conDta{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .qs__body__conDta div{
+            height: 15rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+        }
+        .qs__body__conDta div span{
+            font-weight: bold;
+        }
+        .qs__body__conDta div p{
+            font-size: 3rem;
+        }
+        .qs__body__diagnostico{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            justify-items: center;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+        .qs__body__diagnostico div{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 2rem;
+        }
+        .qs__body__grid,
+        .includes__grid{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            justify-items: center;
+        }
+        .qs__body__grid h2{
+            text-align: center;
+        }
+        .qs__body__grid div{
+            width: 100%;
+        }
+        .includes__grid div{
+            width: 100%;
+            height: 20rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+        .includes__labels{
+            display: flex;
+            align-items: flex-end;
+            border-right: solid 0.5rem yellow;
+            padding-right: 1rem;
+        }
+        .includes__values{
+            display: flex;
+            align-items: center;
+        }
+        .includes__values p{
+            width: 15rem;
+            display: flex;
+        }
+        .includes__values p span{
+            flex-basis: 30%;
+        }
+        .includes__labels h3{
+            max-width: max-content;
+        }
+        .total{
+            padding: 5rem 0;
+        }
+    </style>
+    
+    <article class="qs">
+        <section class="qs__hdr">
+            <div class="qs__hdr__busDta">
+                <h1>NTÚVA</h1>
+                <h2>Cotización Express</h2>
+            </div>
+            <div class="qs__hdr__usrDta">
+                <div class="usrDta__nombre">
+                    <span>Nombre:</span>
+                    <p><%= datos_cotizacion.nombre %></p>
+                </div>
+                <div class="usrDta__folio">
+                    <span>Folio:</span>
+                    <p>COTX-0001</p>
+                </div>
+                <div class="usrDta__telefono">
+                    <span>Teléfono:</span>
+                    <p><%= datos_cotizacion.telefono %></p>
+                </div>
+                <div></div>
+                <div class="usrDta__correo">
+                    <span>Correo:</span>
+                    <p><%= datos_cotizacion.correo %></p>
+                </div>
+                <div class="usrDta__fecha">
+                    <span>Fecha:</span>
+                    <p>11/04/2021</p>
+                </div>
+
+            </div>
+        </section>
+        <section class="qs__body">
+            <div class="qs__body__conDta">
+                <div class="conDta__pagoPromedio">
+                    <span>Pago Promedio CFE:</span>
+                    <p>$<%= datos_cotizacion.pago_promedio %> MXN al bimestre</p>
+                </div>
+                <div class="conDta__pagoPromedio">
+                    <span>Consumo Promedio: </span>
+                    <p><%= datos_cotizacion.consumo_energetico_bimestral %> kWh al bimestre</p>
+                </div>
+            </div>
+            <h2>Diagnóstico</h2>
+            <div class="qs__body__diagnostico">
+                <div class="diagnostico__capacidad">
+                    <span>Capacidad del sistema</span>
+                    <p><%= datos_cotizacion.tamano_sistema %></p>
+                    <p>kWp</p>
+                </div>
+                <div class="diagnostico__generacion">
+                    <span>Área requerida</span>
+                    <p><%= datos_cotizacion.area_instalacion %></p>
+                    <p>metros cuadrados</p>
+                </div>
+                <div class="diagnostico__capacidad">
+                    <span>Generación de energía</span>
+                    <p><%= datos_cotizacion.generacion_energetica_bimestral %></p>
+                    <p>kWh al bimestre</p>
+                </div>
+                <div class="diagnostico__capacidad">
+                    <span>Ahorro al año</span>
+                    <p>$<%= datos_cotizacion.ahorro_anual %></p>
+                    <p>MXN</p>
+                </div>
+            </div>
+            <div class="qs__body__grid">
+                <div class="gridCol__graficos">
+                    <h2>Perfil económico</h2>
+                </div>
+                <div class="gridCol__includes">
+                    <h2>Incluye</h2>
+                    <div class="includes__grid">
+                        <div class="includes__labels">
+                            <h3>Número de paneles</h3>
+                            <h3>Potencia de paneles</h3>
+                            <h3>Número de inversores</h3>
+                            <h3>Potencia del inversor</h3>
+                            <h3>Estructura de aluminio</h3>
+                        </div>
+                        <div class="includes__values">
+                            <p><span><%= datos_cotizacion.numero_paneles %></span> Poli PERC.</p>
+                            <p><span>440</span> Watts</p>
+                            <p><span>NaN</span> Microinversores</p>
+                            <p><span>NaN</span> kW.</p>
+                            <p><span>Sí</span>certificada</p>
+                        </div>
+                    </div>
+                    <div class="total">
+                        <h2>Total: $<span><%= datos_cotizacion.costo_sistema %></span> MXN</h2>
+                        <ul>
+                            <li>Incluye IVA</li>
+                            <li>Vigencia propuesta 10 días</li>
+                            <li>Incluye instalación</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="qs__foo"></section>
+    </article>
+</body>
+</html>

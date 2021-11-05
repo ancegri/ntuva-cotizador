@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NTÚVA Cotizador SFVI</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <style>
+        main{
+            width: 100vw;
+            max-width: 100%;
+            height: max-content;
+            display: flex;
+            justify-content: center;
+            padding: 2.5rem;
+        }
+        main section{
+            width: 70rem;
+            height: 90%;
+            padding: 1rem;
+            background-color: whitesmoke;
+        }
+        .qForm{
+            border-radius: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 5rem;
+            box-shadow: 0rem 1rem 1rem rgb(184, 184, 184);
+        }
+        .qForm form{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+        .qForm__row{
+            display: flex;
+            justify-content: space-between;
+        }
+        .qForm__row .qForm__field{
+            width: 49.5%;
+        }
+        .qForm__field{
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 2rem;
+        }
+        .qForm__field label{
+            margin-bottom: 1rem;
+            text-indent: 1.5rem;
+            font-weight: bold;
+        }
+        .qForm__field input,
+        .qForm__field select{
+            height: 6rem;
+            border: none;
+            border-radius: 0.3rem;
+            padding: 0 2rem;
+            background-color: white;
+        }
+        .qForm__field input[type='file']{
+            padding-top: 1.5rem;
+            background-color: white;
+        }
+        .qForm form button{
+            height: 5rem;
+        }
+    </style>
+    <main>
+
+        <section class="qForm">
+
+            <form action="/cotizacion" method="POST">
+                <div class="qForm__row">
+                    <div class="qForm__field">
+                        <label for="montoBajo">Monto más bajo</label>
+                        <input type="number" name="montoBajo" id="montoBajo" min="1" placeholder="$" required>
+                    </div>
+                    <div class="qForm__field">
+                     <label for="montoAlto">Monto más alto</label>
+                     <input type="number" name="montoAlto" id="montoAlto" min="1" placeholder="$" required>
+                    </div>
+                </div>
+                <div class="qForm__field">
+                    <label for="municipio">Municipio de implementación</label>
+                    <select name="municipio" id="municipio" required>
+                        <option value="NULL">Seleccionar municipio</option>
+                        <% municipios.forEach((municipio)=>{ %>
+                            <option value="<%= municipio.id_municipio %>"><%= municipio.nombre_municipio %></option>
+                        <% }); %>
+                    </select>
+                </div>
+                <div class="qForm__row">
+                    <div class="qForm__field">
+                        <label for="tipoTarifa">Tipo de tarifa a implementar</label>
+                        <select name="tipoTarifa" id="tipoTarifa" required>
+                            <option value="NULL" disabled selected>Seleccionar tipo de tarifa</option>
+                            <% implementaciones.forEach((implementacion)=>{ %>
+                                <option value="<%= implementacion.tipo_implementacion %>"><%= implementacion.tipo_implementacion %></option>
+                            <% }); %>
+                        </select>
+                    </div>
+                    <div class="qForm__field">
+                        <label for="recibo">Recibo de CFE (Opcional)</label>
+                        <input type="file" name="recibo" id="recibo">
+                    </div>
+                </div>
+               <div class="qForm__field">
+                   <label for="nombreCompleto">Nombre completo</label>
+                   <input type="text" name="nombreCompleto" id="nombreCompleto" placeholder="Nombre y apellidos" required>
+               </div>
+               <div class="qForm__row">
+                   <div class="qForm__field">
+                       <label for="telefono">Teléfono</label>
+                       <input type="tel" name="telefono" id="telefono" placeholder="Número telefónico" required>
+                   </div>
+                   <div class="qForm__field">
+                       <label for="correo">Correo electrónico</label>
+                       <input type="email" name="correo" id="correo" placeholder="E-mail" required>
+                    </div>
+               </div>
+                <button type="submit">Cotizar</button>
+            </form>
+
+        </section>
+    </main>
+
+</body>
+</html>
